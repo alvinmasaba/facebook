@@ -56,6 +56,7 @@ group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
   gem 'guard'
   gem 'guard-minitest'
+  gem 'spring', github: 'jonleighton/spring'
 end
 
 group :development do
@@ -74,6 +75,7 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
   gem "webdrivers"
+  gem 'ruby-prof'
 end
 
 gem "devise", "~> 4.8"

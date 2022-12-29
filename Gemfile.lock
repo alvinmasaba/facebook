@@ -1,3 +1,9 @@
+GIT
+  remote: https://github.com/jonleighton/spring.git
+  revision: 45812322a2048c40da6cb08a157f14ab4d17006c
+  specs:
+    spring (4.1.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -208,6 +214,7 @@ GEM
       actionpack (>= 5.0)
       railties (>= 5.0)
     rexml (3.2.5)
+    ruby-prof (1.4.4)
     rubyzip (2.3.2)
     selenium-webdriver (4.7.1)
       rexml (~> 3.2, >= 3.2.5)
@@ -266,7 +273,9 @@ DEPENDENCIES
   pg (~> 1.1)
   puma (~> 5.0)
   rails (~> 7.0.4)
+  ruby-prof
   selenium-webdriver
+  spring!
   sprockets-rails
   stimulus-rails
   turbo-rails
