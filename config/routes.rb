@@ -8,4 +8,8 @@ Rails.application.routes.draw do
   scope '/dashboard' do
     root 'dashboards#show'
   end
+
+  resources :posts do
+    resources :comments
+  end
 end
