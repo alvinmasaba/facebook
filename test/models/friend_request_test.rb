@@ -38,4 +38,22 @@ class FriendRequestTest < ActiveSupport::TestCase
 
     assert_not request.recipient.potential_friends.include?(request.sender)
   end
+
+  test 'a user cannot send the same user more than one request at a time' do
+    request = FriendRequest.new(:sender => users(:alvin), :recipient => users(:stephanie))
+    request.save
+
+    request = FriendRequest.new(:sender => users(:alvin), :recipient => users(:stephanie))
+    
+    assert_not request.save
+  end
+
+  test 'a user cannot send a request to a user who has already sent them a request' do
+    request = FriendRequest.new(:sender => users(:alvin), :recipient => users(:stephanie))
+    request.save
+
+    request = FriendRequest.new(:sender => users(:stephanie), :recipient => users(:alvin))
+    
+    assert_not request.save
+  end
 end

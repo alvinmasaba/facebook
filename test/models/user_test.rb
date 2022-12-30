@@ -33,4 +33,22 @@ class UserTest < ActiveSupport::TestCase
 
     assert_not Friendship.exists?(:id => friendship.id)
   end
+
+  test 'destroying the friendship does not destroy the user' do
+    friendship = Friendship.new(:user => users(:alvin), :friend => users(:stephanie))
+    friendship.save
+
+    friendship.destroy!
+
+    assert users(:alvin)
+  end
+
+  test 'destroying the friendship does not destroy the friend' do
+    friendship = Friendship.new(:user => users(:alvin), :friend => users(:stephanie))
+    friendship.save
+
+    friendship.destroy!
+
+    assert users(:stephanie)
+  end
 end
