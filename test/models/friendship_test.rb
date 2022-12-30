@@ -18,7 +18,14 @@ class FriendshipTest < ActiveSupport::TestCase
     assert friendship.user.friends.include?(friendship.friend)
   end
 
-  test 'the friendship is mutual after two friendship records are created' do
+  test 'a friendship is not mutual if only a single record between users is created' do
+    friendship = Friendship.new(:user => users(:francis), :friend => users(:alvin))
+    friendship.save
+
+    assert_not friendship.is_mutual
+  end
+
+  test 'the friendship is mutual only after two friendship records are created' do
     # Saves two reciprocal friendships to the database.
     friendship = Friendship.new(:user => users(:francis), :friend => users(:alvin))
     friendship.save
