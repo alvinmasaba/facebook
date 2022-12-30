@@ -7,6 +7,7 @@ class FriendRequest < ApplicationRecord
   validates_presence_of :sender_id, :recipient_id
   validate :sender_is_not_recipient
   validate :request_is_unique
+  validate :recipient_is_not_friend
   validates_uniqueness_of :sender_id, scope: [:recipient_id]
 
   private
@@ -17,5 +18,9 @@ class FriendRequest < ApplicationRecord
 
   def request_is_unique
     errors.add(:sender, "Request is already pending. Check your friend requests.") if FriendRequest.exists?(:sender => self.recipient, :recipient => self.sender)
+  end
+
+  def recipient_is_not_friend
+    errors.add(:sender, "Cannot send request to active friend.") if self.sender.friends.include?(self.recipient)
   end
 end

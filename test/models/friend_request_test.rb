@@ -32,7 +32,7 @@ class FriendRequestTest < ActiveSupport::TestCase
     assert request.recipient.incoming_friends.include?(request.sender)
   end
 
-  test "receiving a request does not add the sender to the recipient's potenntial_friends" do
+  test "receiving a request does not add the sender to the recipient's potential_friends" do
     request = FriendRequest.new(:sender => users(:alvin), :recipient => users(:stephanie))
     request.save
 
@@ -48,12 +48,20 @@ class FriendRequestTest < ActiveSupport::TestCase
     assert_not request.save
   end
 
-  test 'a user cannot send a request to a user who has already sent them a request' do
+  test 'a user cannot send a request to a user whom has already sent them a request' do
     request = FriendRequest.new(:sender => users(:alvin), :recipient => users(:stephanie))
     request.save
 
     request = FriendRequest.new(:sender => users(:stephanie), :recipient => users(:alvin))
     
+    assert_not request.save
+  end
+
+  test 'a user cannot send a request to their own friends' do
+    users(:alvin).friends << users(:stephanie)
+
+    request = FriendRequest.new(:sender => users(:alvin), :recipient => users(:stephanie))
+
     assert_not request.save
   end
 end
