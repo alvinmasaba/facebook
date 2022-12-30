@@ -5,6 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :friendships, dependent: :destroy
+  has_many :outgoing_friendships, class_name: 'Friendship', foreign_key: 'user_id'
+  has_many :incoming_friendships, class_name: 'Friendship', foreign_key: 'friend_id', dependent: :destroy
   has_many :friends, through: :friendships
 
   has_many :sent_requests, class_name: 'FriendRequest', foreign_key: 'sender_id'
