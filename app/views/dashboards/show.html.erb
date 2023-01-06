@@ -1,21 +1,4 @@
 Hello <%= current_user.first_name %>!
 
 <%# Display Friends List or Search Results %>
-<% if params[:search] %>
-  <h2> Results:</h2>
-
-  <ol>
-    <% User.search(params[:search]).select { |user| user != current_user }.each do |r| %>
-      <li><%= r.first_name %> <%= r.last_name %></li>
-    <% end %>
-  </ol>
-
-<% else %>
-  <h2>Friends:</h2>
-
-  <ol>
-    <% current_user.friends.each do |f| %>
-      <li><%= f.first_name %></li>
-    <% end %>
-  </ol>
-<% end %>
+<%= render (params[:search].present? ? 'search_results' : 'friend_list') %>

@@ -1,0 +1,7 @@
+<h2>Friends:</h2>
+
+<ol>
+  <% current_user.friends.each do |f| %>
+    <li><%= f.first_name %></li>
+  <% end %>
+</ol>
