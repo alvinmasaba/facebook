@@ -1,10 +1,21 @@
 Hello <%= current_user.email %>!
 
-<%# Display Friends List %>
-<h2>Friends: </h2>
+<%# Display Friends List or Search Results %>
+<% if params[:search] %>
+  <h2> Results:</h2>
 
-<ol>
-  <% current_user.friends.each do |f| %>
-    <li><%= f.email %></li>
-  <% end %>
-</ol>
+  <ol>
+    <% params[:search].each do |r| %>
+      <li><%= r %><%# r.first_name %> <%#{r.last_name} %></li>
+    <% end %>
+  </ol>
+
+<% else %>
+  <h2>Friends:</h2>
+
+  <ol>
+    <% current_user.friends.each do |f| %>
+      <li><%= f.email %></li>
+    <% end %>
+  </ol>
+<% end %>
