@@ -8,5 +8,7 @@ USERS = ["Alvin Masaba", "Francis Masaba", "Stephanie Masaba",
 
 USERS.each do |u|
   name = u.split
-  UserManager::User.create(name: name[0], surname: name[1], email: "#{name[0].downcase}@gmail.com", password: 'masaba', password_confirmation: 'masaba')
+  User.create! first_name: name[0], last_name: name[1], email: "#{name[0].downcase}@gmail.com", password: 'masaba', password_confirmation: 'masaba'
 end
+
+puts "Seeding complete!"
