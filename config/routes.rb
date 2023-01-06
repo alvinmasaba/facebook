@@ -5,9 +5,7 @@ Rails.application.routes.draw do
 
   resource :dashboard, only: [:show]
 
-  scope '/dashboard' do
-    root 'dashboards#show'
-  end
+  root 'dashboards#show'
 
   resources :posts do
     resources :comments
