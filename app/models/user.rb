@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :friendships, dependent: :destroy
+  has_many :friendships, lambda { order "created_at DESC" }, dependent: :destroy 
   has_many :outgoing_friendships, class_name: 'Friendship', foreign_key: 'user_id'
   has_many :incoming_friendships, class_name: 'Friendship', foreign_key: 'friend_id', dependent: :destroy
   has_many :friends, through: :friendships
@@ -28,5 +28,9 @@ class User < ApplicationRecord
   def pending_friends
     # Pending friends are users in a users outgoing or incoming friend requests.
     self.incoming_friends.concat(self.potential_friends)
+  end
+
+  # Search function to search users
+  def self.search
   end
 end
