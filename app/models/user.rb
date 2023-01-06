@@ -31,6 +31,16 @@ class User < ApplicationRecord
   end
 
   # Search function to search users
-  def self.search
+  def self.search(search)
+    if search
+      user_id = User.where("name like ?", "%#{search}%")
+        if user_id
+          self.where(id: user_id)
+        else
+          @users = User.all
+        end
+    else
+      @user = User.all
+    end
   end
 end
