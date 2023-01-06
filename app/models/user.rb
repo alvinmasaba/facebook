@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  validates_presence_of :first_name, :last_name
+  
   has_many :friendships, lambda { order "created_at DESC" }, dependent: :destroy 
   has_many :outgoing_friendships, class_name: 'Friendship', foreign_key: 'user_id'
   has_many :incoming_friendships, class_name: 'Friendship', foreign_key: 'friend_id', dependent: :destroy
