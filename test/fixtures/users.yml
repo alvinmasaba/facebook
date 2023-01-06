@@ -5,15 +5,23 @@
 # below each fixture, per the syntax in the comments below
 #
 alvin:
+  first_name: 'alvin'
+  last_name: 'smith'
   email: 'alvin@gmail.com'
 
-francis: 
+francis:
+  first_name: 'francis'
+  last_name: 'smith'
   email: 'francis@gmail.com'
 
 stephanie:
+  first_name: 'steph'
+  last_name: 'smith'
   email: 'steph@gmail.com'
 
 trevor:
+  first_name: 'trevor'
+  last_name: 'smith'
   email: 'trevor@gmail.com'
 
 
