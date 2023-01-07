@@ -1,0 +1,9 @@
+<h2> Results:</h2>
+
+  <ol>
+    <% User.search(params[:search]).select { |user| user != current_user }.each do |r| %>
+
+      <%# If not friends, render link to send request, otherwise show nothing %>
+      <li><%= r.first_name %> <%= r.last_name %> || <%= link_to "Send Friend Request", new_friendship_path(current_user, r) %></li>
+    <% end %>
+  </ol>
