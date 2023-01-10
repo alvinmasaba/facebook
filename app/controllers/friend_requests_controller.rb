@@ -19,7 +19,7 @@ class FriendRequestsController < ApplicationController
     @friend_request = FriendRequest.find(params[:id])
     @friend_request.destroy
 
-    redirect_to @dashboard, status: :see_other
+    redirect_to dashboard_path, status: :see_other
   end
 
   private
