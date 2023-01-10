@@ -1,0 +1,9 @@
+<%= form_with(model: friend_request) do |form| %>
+  <%= form.hidden_field :sender, :value => sender.id %>
+  <%= form.hidden_field :recipient, :value => recipient.id %>
+
+  <%= puts friend_request %>
+  <div>
+    <%= form.submit 'Send Friend Request' %>
+  </div>
+<% end %>

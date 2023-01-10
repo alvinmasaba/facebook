@@ -1,13 +1,16 @@
 class FriendRequestsController < ApplicationController
   def new
     @friend_request = FriendRequest.new
+    puts @friend_request
   end
 
   def create
-    @friend_request = FriendRequest.new((friendship_params))
+    @sender = User.find(friend_request_params[:sender])
+    @recipient = User.find(friend_request_params[:recipient])
+    @friend_request = FriendRequest.new(:sender => @sender, :recipient => @recipient)
 
     if @friend_request.save!
-      redirect_to @dashboard
+      redirect_to dashboard_path
     else
       render :new, status: :unprocessable_entity
     end
