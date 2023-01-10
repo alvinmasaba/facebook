@@ -1,7 +1,6 @@
 class FriendRequestsController < ApplicationController
   def new
     @friend_request = FriendRequest.new
-    puts @friend_request
   end
 
   def create
