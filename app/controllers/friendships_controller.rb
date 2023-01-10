@@ -10,7 +10,8 @@ class FriendshipsController < ApplicationController
 
     if @friendship_1.save! && @friendship_2.save!
       # Friend request is destroyed after accepted.
-      FriendRequest.where(recipient: current_user).destroy
+      @request = FriendRequest.where(sender: @user, recipient: current_user)
+      @request.destroy
 
       redirect_to @dashboard
     else

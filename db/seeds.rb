@@ -1,7 +1,5 @@
 puts "Seeding database with users..."
 
-User.delete_all
-
 USERS = ["Alvin Masaba", "Francis Masaba", "Stephanie Masaba",
          "Trevor Masaba", "Cassandra Marambio", "Nick Kerr", "Steve Nash",
          "LeBron James", "Pascal Siakam", "Chat GPT3"]

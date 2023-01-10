@@ -3,6 +3,6 @@
   <ol>
     <%# Return a list of the users returned by the search method, excluding the current user %>
     <% User.search(params[:search]).select { |result| result != current_user }.each do |user| %>
-      <li><%= user.full_name %> <%= render 'friend_request', user: user %></li>
+      <li><%= user.full_name %> <%= render 'user_status', user: user %></li>
     <% end %>
   </ol>

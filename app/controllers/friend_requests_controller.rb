@@ -1,4 +1,9 @@
 class FriendRequestsController < ApplicationController
+  def index
+    @received_requests = current_user.received_requests
+    @sent_requests = current_user.sent_requests
+  end
+
   def new
     @friend_request = FriendRequest.new
   end
@@ -9,7 +14,7 @@ class FriendRequestsController < ApplicationController
     @friend_request = FriendRequest.new(:sender => @sender, :recipient => @recipient)
 
     if @friend_request.save!
-      redirect_to dashboard_path
+      redirect_to dashboard_path, notice: "Friend Request Sent."
     else
       render :new, status: :unprocessable_entity
     end

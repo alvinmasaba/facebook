@@ -1,0 +1,11 @@
+<h2>Sent Requests</h2>
+
+<% @sent_requests.each do |request| %>
+  <li><%= request.recipient.full_name %>, <p>Request Pending...</p></li>
+<% end %>
+
+<h2>Received Requests</h2>
+
+<% @received_requests.each do |request| %>
+  <%= request.sender.full_name %> <%= link_to "Accept Friend Request", new_friendship_path(:friend => current_user, :user => request.sender), data: {"turbo-frame": :"accept_request"} %>
+<% end %>
