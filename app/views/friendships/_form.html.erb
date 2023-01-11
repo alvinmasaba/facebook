@@ -1,7 +1,5 @@
 <%= form_with(model: friendship) do |form| %>
-  <%= form.hidden_field :friend, :value => friend.id %>
-  <%= form.hidden_field :user, :value => user.id %>
-
+  <%= form.hidden_field :friend_id, :value => friend_id %>
   <div>
     <%= form.submit 'Accept Friend Request' %>
   </div>

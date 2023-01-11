@@ -1,3 +1,3 @@
 <%= turbo_frame_tag "accept_request" do %>
-  <%= render "form", friendship: @friendship, friend: current_user, user: User.find(params[:user]) %>
+  <%= render "form", friendship: @friendship, friend_id: User.find(params[:user]).id %>
 <% end %>

@@ -2,10 +2,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :friendships, lambda { order "created_at DESC" }, dependent: :destroy 
   has_many :outgoing_friendships, class_name: 'Friendship', foreign_key: 'user_id'
   has_many :incoming_friendships, class_name: 'Friendship', foreign_key: 'friend_id', dependent: :destroy
-  has_many :friends, through: :friendships
 
   has_many :sent_requests, class_name: 'FriendRequest', foreign_key: 'sender_id'
   has_many :received_requests, class_name: 'FriendRequest', foreign_key: 'recipient_id'
@@ -19,13 +17,23 @@ class User < ApplicationRecord
   # Potential friends are users to whom the user has sent a friend request
   has_many :potential_friends, through: :sent_requests, source: 'recipient'
 
-  def active_friends
-    friends.select { |friend| friend.friends.include?(self) }
+  def friends
+    outgoing_friendships.map { |f| User.find(f[:friend_id]) }
+                        .concat( incoming_friendships.map { |f| User.find(f[:user_id]) })
+  end
+
+  def friendships
+    self.incoming_friendships.concat(self.outgoing_friendships)
   end
 
   def pending_friends
     # Pending friends are users in a users outgoing or incoming friend requests.
     self.incoming_friends.concat(self.potential_friends)
+  end
+
+  def find_friendship(user)
+    # A user may be a friend or a user in a friendship. These columns are interchangeable.
+    Friendship.find_by(user: self.id, friend: user.id) || Friendship.find_by(user: user.id, friend: self.id)
   end
 
   # Search function to search users
