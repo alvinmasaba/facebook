@@ -2,7 +2,7 @@
 
 <ol>
   <% @sent_requests.each do |request| %>
-    <li><%= request.recipient.full_name %>, <p>Request Pending...</p></li>
+    <li><%= request.recipient.full_name %>, <p>Request Pending...</p> <%= button_to "Remove Friend Request", friend_request_path(request), method: :delete %></li>
   <% end %>
 </ol>
 
