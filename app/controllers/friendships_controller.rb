@@ -19,8 +19,7 @@ class FriendshipsController < ApplicationController
   end
 
   def destroy
-    @friend = User.find(friendship_params[:friend_id])
-    @friendship = current_user.find_friendship(@friend)
+    @friendship = Friendship.find(params[:id])
     @friendship.destroy
 
     redirect_to root_path, status: :see_other

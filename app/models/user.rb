@@ -18,8 +18,8 @@ class User < ApplicationRecord
   has_many :potential_friends, through: :sent_requests, source: 'recipient'
 
   def friends
-    outgoing_friendships.map { |f| User.find(f[:friend_id]) }
-                        .concat( incoming_friendships.map { |f| User.find(f[:user_id]) })
+    self.outgoing_friendships.map { |f| User.find(f[:friend_id]) }
+                        .concat( self.incoming_friendships.map { |f| User.find(f[:user_id]) })
   end
 
   def friendships
