@@ -1,4 +1,34 @@
-Hello <%= current_user.first_name %>!
+<h1>Hi<%= current_user.first_name %>!</h1>
+
+<div id="post-form">
+  <%= form_with model: @post, local: false do |f| %>
+    <div class="field has-addons">
+      <div class="control">
+        <%= f.text_field :body, id: "message-input", class: "input", 
+            placeholder: "What's on your mind, #{current_user.first_name}?" %>
+      </div>
+      <div class="control">
+        <%= f.submit "Post", class: "button -is-primary" %>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<%# Displays recent posts from friends %>
+<div>
+  <div id="post-display">
+    <% current_user.recent_friends_posts.each do |p| %>
+      <article class="post">
+        <div class="post-header">
+          <%= p.author.full_name %>
+        </div>
+        <div class="post-body">
+          <%= p.body %>
+        </div>
+      </article>
+    <% end %>
+  </div>
+</div>
 
 <%# Display Friends List or Search Results %>
-<%= render (params[:search].present? ? 'search_results' : 'friend_list') %>
+<%# render (params[:search].present? ? "search_results" : "friend_list") %>

@@ -17,6 +17,12 @@ class User < ApplicationRecord
   # Potential friends are users to whom the user has sent a friend request
   has_many :potential_friends, through: :sent_requests, source: 'recipient'
 
+  def recent_friends_posts
+    Post.all
+        .order('created_at')
+        .select { |post| self.friends.include?(post.author) || post.author == self }
+  end
+
   def friends
     self.outgoing_friendships.map { |f| User.find(f[:friend_id]) }
                         .concat( self.incoming_friendships.map { |f| User.find(f[:user_id]) })
