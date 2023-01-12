@@ -1,4 +1,10 @@
 <h1>Hi<%= current_user.first_name %>!</h1>
 
-<%# Display Feed or Search Results %>
-<%= render (params[:search].present? ? "search_results" : "feed") %>
+<% if params[:id] == "friends" %>
+  <%= turbo_frame_tag "friends" do %>
+    <%= render "friends" %>
+  <% end %>
+<% else %>
+  <%# Display Feed or Search Results %>
+  <%= render (params[:search].present? ? "search_results" : "feed") %>
+<% end %>

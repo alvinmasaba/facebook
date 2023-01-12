@@ -3,7 +3,7 @@ Rails.application.routes.draw do
     sessions: 'users/sessions'
   }
 
-  resource :dashboard, only: [:show]
+  resource :dashboard, only: [:index, :show]
 
   root 'dashboards#show'
 
