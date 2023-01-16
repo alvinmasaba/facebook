@@ -11,25 +11,22 @@ class FriendshipTest < ActiveSupport::TestCase
     assert friendship.save
   end
 
-  test 'a friendship adds the friend to the users friends list' do
+  test 'a friendship adds the friend to the user\'s friends list' do
     friendship = Friendship.new(:user => users(:alvin), :friend => users(:stephanie))
     friendship.save
 
     assert friendship.user.friends.include?(friendship.friend)
   end
 
-  test 'a friendship is not mutual if only a single record between users is created' do
-    friendship = Friendship.new(:user => users(:francis), :friend => users(:alvin))
+  test 'a friendship adds the user to the friend\'s friends list' do
+    friendship = Friendship.new(:user => users(:alvin), :friend => users(:stephanie))
     friendship.save
 
-    assert_not friendship.is_mutual
+    assert friendship.friend.friends.include?(friendship.user)
   end
 
-  test 'the friendship is mutual only after two friendship records are created' do
-    # Saves two reciprocal friendships to the database.
-    friendship = Friendship.new(:user => users(:francis), :friend => users(:alvin))
-    friendship.save
-    friendship = Friendship.new(:user => users(:alvin), :friend => users(:francis))
+  test 'a friendship is mutual' do
+    friendship = Friendship.new(:user => users(:alvin), :friend => users(:stephanie))
     friendship.save
 
     assert friendship.is_mutual
