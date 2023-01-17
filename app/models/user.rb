@@ -46,7 +46,7 @@ class User < ApplicationRecord
   # Search function to search users
   def self.search(search)
     if search
-      user_id = User.where("first_name like :search OR last_name like :search", search: "%#{search}%")
+      user_id = User.where("first_name ILIKE :search OR last_name ILIKE :search", search: "%#{search}%")
         if user_id
           self.where(id: user_id)
         else
