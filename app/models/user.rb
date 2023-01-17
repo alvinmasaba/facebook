@@ -60,4 +60,8 @@ class User < ApplicationRecord
   def full_name
     "#{self.first_name} #{self.last_name}"
   end
+
+  def friend_requests?
+    self.num_of_friend_requests > 0
+  end
 end
