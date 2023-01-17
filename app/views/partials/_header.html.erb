@@ -24,7 +24,7 @@
 
           <% if current_user.friend_requests? %>
             <li class="nav-item p-2">
-              <%= link_to 'Friend Requests', friend_requests_path %>
+              <%= link_to "#{current_user.pluralize_friend_requests}", friend_requests_path %>
             </li>
           <% end %>
 

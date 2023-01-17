@@ -64,4 +64,8 @@ class User < ApplicationRecord
   def friend_requests?
     self.num_of_friend_requests > 0
   end
+
+  def pluralize_friend_requests
+    "You have #{self.num_of_friend_requests} new friend #{'request'.pluralize(self.num_of_friend_requests)}"
+  end
 end
