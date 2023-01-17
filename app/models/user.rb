@@ -2,7 +2,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :outgoing_friendships, class_name: 'Friendship', foreign_key: 'user_id'
+  has_many :outgoing_friendships, class_name: 'Friendship', foreign_key: 'user_id', dependent: :destroy
   has_many :incoming_friendships, class_name: 'Friendship', foreign_key: 'friend_id', dependent: :destroy
 
   has_many :sent_requests, class_name: 'FriendRequest', foreign_key: 'sender_id'

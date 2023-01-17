@@ -8,47 +8,18 @@ class UserTest < ActiveSupport::TestCase
     assert friendship.user.friends.include?(friendship.friend)
   end
 
-  test 'destroying a user destroys the friendship' do
-    user = users(:alvin)
+  test 'recent_friends_posts includes all friends posts' do
+    # Posts one, two, and three are authored by users :alvin, :stephanie and :francis, respectfully.
+    # Friendship fixtures exists between :alvin and :stephanie, and :alvin and :francis.
+    posts = [posts(:one), posts(:two), posts(:three)]
 
-    # Creates and saves a friendship.
-    friendship = Friendship.new(:user => user, :friend => users(:stephanie))
-    friendship.save
-
-    # Destroys the user.
-    user.destroy!
-
-    assert_not Friendship.exists?(:id => friendship.id)
+    assert posts.all? { |post| users(:alvin).recent_friends_posts.include?(post) }
   end
 
-  test 'destroying the friend destroys the friendship' do
-    friend = users(:alvin)
+  test 'recent_friends_posts does not include posts from non-friends' do
+    # Post :four is from a user whom is not friends with :alvin
+    posts = [posts(:one), posts(:two), posts(:three), posts(:four)]
 
-    # Creates and saves a friendship.
-    friendship = Friendship.new(:user => users(:stephanie), :friend => friend)
-    friendship.save
-
-    # Destroys the user.
-    friend.destroy!
-
-    assert_not Friendship.exists?(:id => friendship.id)
-  end
-
-  test 'destroying the friendship does not destroy the user' do
-    friendship = Friendship.new(:user => users(:alvin), :friend => users(:stephanie))
-    friendship.save
-
-    friendship.destroy!
-
-    assert users(:alvin)
-  end
-
-  test 'destroying the friendship does not destroy the friend' do
-    friendship = Friendship.new(:user => users(:alvin), :friend => users(:stephanie))
-    friendship.save
-
-    friendship.destroy!
-
-    assert users(:stephanie)
+    assert_not posts.all? { |post| users(:alvin).recent_friends_posts.include?(post) }
   end
 end

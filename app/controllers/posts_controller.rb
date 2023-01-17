@@ -1,4 +1,8 @@
 class PostsController < ApplicationController
+  def index
+    @posts = current_user.recent_friends_posts
+  end
+
   def create
     @post = current_user.posts.build(post_params)
     @post.save
