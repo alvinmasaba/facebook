@@ -24,4 +24,8 @@ trevor:
   last_name: 'smith'
   email: 'trevor@gmail.com'
 
+mikey:
+  first_name: 'Michael'
+  last_name: 'James'
+  email: 'mikey@gmail.com'
 

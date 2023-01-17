@@ -22,4 +22,14 @@ class UserTest < ActiveSupport::TestCase
 
     assert_not posts.all? { |post| users(:alvin).recent_friends_posts.include?(post) }
   end
+
+  test 'friend_requests? returns true when user has outstanding requests' do
+    FriendRequest.create(:sender => users(:mikey), :recipient => users(:alvin))
+
+    assert users(:alvin).friend_requests?
+  end
+
+  test 'friend_requests? returns false when user has no requests' do
+    assert_not users(:alvin).friend_requests?
+  end
 end
