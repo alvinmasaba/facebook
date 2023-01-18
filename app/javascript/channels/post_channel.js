@@ -12,7 +12,7 @@ const postChannel = consumer.subscriptions.create("PostChannel", {
   received(data) {
     // Called when there's incoming data on the websocket for this channel
     const postDisplay = document.querySelector('#post-display')
-    postDisplay.insertAdjacentHTML('beforeend', this.template(data))
+    postDisplay.insertAdjacentHTML('beforebegin', this.template(data))
     console.log(data)
   },
 

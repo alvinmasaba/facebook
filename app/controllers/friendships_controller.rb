@@ -12,7 +12,7 @@ class FriendshipsController < ApplicationController
       @request = FriendRequest.find_by(sender: @friend.id, recipient: current_user.id)
       @request.destroy
 
-      redirect_to dashboard_path
+      redirect_to root_path
     else
       render :new, status: :unprocessable_entity
     end

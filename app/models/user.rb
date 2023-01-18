@@ -19,8 +19,8 @@ class User < ApplicationRecord
 
   def recent_friends_posts
     Post.all
+        .order('created_at desc')
         .includes(:author, :comments)
-        .order('created_at')
         .select { |post| self.friends.include?(post.author) || post.author == self }
   end
 
