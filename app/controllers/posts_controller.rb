@@ -1,6 +1,9 @@
 class PostsController < ApplicationController
   def index
+    @post = Post.new
     @posts = current_user.recent_friends_posts
+
+    @posts.each { |post| post.comments.build }
   end
 
   def create
@@ -12,6 +15,6 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:body)
+    params.require(:post).permit(:body, comments_attributes: [:id, :body, :_destroy])
   end
 end

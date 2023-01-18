@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   resource :dashboard, only: [:index, :show]
 
-  root 'dashboards#show'
+  root 'posts#index'
 
   resources :posts do
     resources :comments

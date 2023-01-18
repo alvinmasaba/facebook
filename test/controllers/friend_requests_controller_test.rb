@@ -16,11 +16,4 @@ class FriendRequestsControllerTest < ActionDispatch::IntegrationTest
     get new_friend_request_path(recipient: users(:francis))
     assert_redirected_to new_user_session_path
   end
-
-  test 'new friend request path creates a friend request' do
-    sign_in users(:alvin)
-    get new_friend_request_path(recipient: users(:francis))
-
-    
-  end
 end
