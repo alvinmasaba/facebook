@@ -22,6 +22,7 @@ class User < ApplicationRecord
         .order('created_at desc')
         .includes(:author, :comments)
         .select { |post| self.friends.include?(post.author) || post.author == self }
+        .take(10)
   end
 
   def friends
