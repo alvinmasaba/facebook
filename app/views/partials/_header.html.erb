@@ -23,9 +23,13 @@
           </li>
 
           <% if current_user.friend_requests? %>
-            <li class="nav-item p-2">
-              <%= link_to "#{current_user.pluralize_friend_requests}", friend_requests_path %>
-            </li>
+            <%= link_to friend_requests_path, class: "btn btn-primary position-relative py-0" do %>
+              New Friend Requests
+              <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                <%= current_user.num_of_friend_requests %>
+                <span class="visually-hidden">friend requests</span>
+              </span>
+            <% end %>
           <% end %>
 
           <li class="nav-item p-2">

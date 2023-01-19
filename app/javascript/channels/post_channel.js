@@ -30,21 +30,6 @@ const postChannel = consumer.subscriptions.create("PostChannel", {
                 <p class="mt-3 mb-4 pb-2">
                   ${data.body}
                 </p>
-            
-                <div class="small d-flex justify-content-start">
-                  <a href="#!" class="d-flex align-items-center me-3">
-                    <i class="far fa-thumbs-up me-2"></i>
-                    <p class="mb-0">Like</p>
-                  </a>
-                  <a href="#!" class="d-flex align-items-center me-3">
-                    <i class="far fa-comment-dots me-2"></i>
-                    <p class="mb-0">Comment</p>
-                  </a>
-                  <a href="#!" class="d-flex align-items-center me-3">
-                    <i class="fas fa-share me-2"></i>
-                    <p class="mb-0">Share</p>
-                  </a>
-                </div>
               </div>
             </div>`
   }
