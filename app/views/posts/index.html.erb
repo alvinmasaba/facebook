@@ -6,7 +6,7 @@
     <div class="row d-flex justify-content-center gap-5">
       <% @posts.each do |post| %>
         <div class="col-md-12 col-lg-10 col-xl-8" id="post-display">
-          <%= render "card", post: post %>
+          <%= render "container", post: post %>
         </div>
       <% end %>
     </div>

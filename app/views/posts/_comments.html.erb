@@ -9,11 +9,11 @@
       <div>
         <div class="d-flex justify-content-between align-items-center">
           <p class="mb-1">
-            <%= comment.commenter %> <span class="small"><%= time_ago_in_words(post.created_at) %> ago</span>
+            <%= comment.commenter.full_name %> <span class="small"><%= time_ago_in_words(post.created_at) %> ago</span>
           </p>
         </div>
         <p class="small mb-0">
-          <%= comment.inspect %>
+          <%= comment.body %>
         </p>
       </div>
     </div>
