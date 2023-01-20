@@ -8,6 +8,11 @@
       <p class="text-muted small mb-0">
         Shared publicly - <%= time_ago_in_words(post.created_at) %> ago
       </p>
+      <span class="small">
+        <% if post.author == current_user %>
+          <%= link_to "Delete", post_path(post), data: { "turbo-method": :delete }, class: "mb-0" %>
+        <% end %>
+      </span>
     </div>
   </div>
 
