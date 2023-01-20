@@ -1,4 +1,5 @@
-<%= form_with(model: friend_request) do |form| %>
+<%= form_with(model: friend_request, html: { class: "d-inline-block" }) do |form| %>
   <%= form.hidden_field :recipient_id, :value => recipient_id %>
-  <%= form.submit 'Send Friend Request' %>
+  <%= form.submit 'Send Friend Request', class: "btn btn-link p-0 m-0 d-inline align-baseline d-inline-block", 
+                                          data: { turbo_confirm: "Send this person a friend request?" }  %>
 <% end %>

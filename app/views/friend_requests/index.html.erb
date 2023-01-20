@@ -10,6 +10,6 @@
 
 <ol>
   <% @received_requests.each do |request| %>
-    <%= request.sender.full_name %> <%= link_to "Accept Friend Request", new_friendship_path(:friend => current_user, :user => request.sender), data: {"turbo-frame": :"accept_request"} %>
+    <%= request.sender.full_name %> <%= render "friendships/form", friendship: Friendship.new, friend_id: request.sender.id %>
   <% end %>
 </ol>

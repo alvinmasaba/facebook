@@ -1,6 +1,5 @@
 <%= form_with(model: friendship) do |form| %>
   <%= form.hidden_field :friend_id, :value => friend_id %>
-  <div>
-    <%= form.submit 'Accept Friend Request' %>
-  </div>
+  <%= form.submit 'Accept Friend Request', class: "btn btn-link p-0 m-0 d-inline align-baseline", 
+                                            data: { turbo_confirm: "Accept this friend request?" } %>
 <% end %>

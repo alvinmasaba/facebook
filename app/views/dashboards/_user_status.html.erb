@@ -1,12 +1,8 @@
 <% if current_user.potential_friends.include?(user) %>
   <p>Friend Request Pending</p>
 <% elsif current_user.incoming_friends.include?(user)%>
-  <%= turbo_frame_tag "accept_request" do %>
-    <%= link_to "Accept Friend Request", new_friendship_path(:friend => current_user, :user => user), data: {"turbo-frame": :"accept_request"} %>
-  <% end %>
+  <%= render "friendships/form", friendship: Friendship.new, friend_id: user.id %>
 <% elsif !current_user.friends.include?(user) %>
-  <%= turbo_frame_tag "friend_request" do %>
-    <%= link_to "Send Friend Request", new_friend_request_path(:sender => current_user, :recipient => user), data: {"turbo-frame": :"friend_request"} %>
-  <% end %>
+  <%= render "friend_requests/form", friend_request: FriendRequest.new, recipient_id: user.id %>
 <% end %>
    
