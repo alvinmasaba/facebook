@@ -2,6 +2,10 @@
 
 <ol>
   <% current_user.friends.each do |f| %>
-    <li><%= f.first_name %> <%= button_to "Unfriend", friendship_path(current_user.find_friendship(f)), method: :delete %></li>
+    <li><%= f.first_name %> <%= link_to "Click to Unfriend", friendship_path(current_user.find_friendship(f)), 
+                                                              data: {
+                                                                turbo_method: :delete,
+                                                                turbo_confirm: "Are you sure?"
+                                                              } %></li>
   <% end %>
 </ol>

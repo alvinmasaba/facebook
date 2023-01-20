@@ -1,10 +1,9 @@
-<h1>Hi<%= current_user.first_name %>!</h1>
+<h1>Hi <%= current_user.first_name %>!</h1>
 
 <% if params[:id] == "friends" %>
   <%= turbo_frame_tag "friends" do %>
     <%= render "friends" %>
   <% end %>
 <% else %>
-  <%# Display Feed or Search Results %>
-  <%= render (params[:search].present? ? "search_results" : "feed") %>
+  <%= render "search_results" %>
 <% end %>

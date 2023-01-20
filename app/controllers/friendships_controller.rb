@@ -1,4 +1,6 @@
 class FriendshipsController < ApplicationController
+  before_action :set_friendship, only: [:destroy]
+
   def new
     @friendship = Friendship.new
   end
@@ -19,15 +21,21 @@ class FriendshipsController < ApplicationController
   end
 
   def destroy
-    @friendship = Friendship.find(params[:id])
     @friendship.destroy
 
-    redirect_to root_path, status: :see_other
+    respond_to do |format|
+      format.html { redirect_to root_path, notice: "You have successfully unfriended." }
+      format.json { head :no_content }
+    end
   end
 
   private
 
   def friendship_params
     params.require(:friendship).permit(:friend_id)
+  end
+
+  def set_friendship
+    @friendship = Friendship.find(params[:id])
   end
 end
