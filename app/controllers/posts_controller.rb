@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [ :update ]
+  before_action :set_post, only: [:update, :destroy]
 
   def index
     @post = Post.new
@@ -21,6 +21,15 @@ class PostsController < ApplicationController
         format.html { render :index, status: :unprocessable_entity }
         format.json { render json: @post.errors, status: :unprocessable_entity }
       end
+    end
+  end
+
+  def destroy
+    @post.destroy
+
+    respond_to do |format|
+      format.html { redirect_to root_path, notice: "Post was successfully destroyed." }
+      format.json { head :no_content }
     end
   end
 

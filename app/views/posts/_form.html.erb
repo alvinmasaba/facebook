@@ -1,17 +1,20 @@
 <%= form_with(model: post) do |form| %>
-  <% post.comments.build %>
-
   <div class="card-footer my-2 py-3 border-0" style="background-color: #f8f9fa;">
     <div class="d-flex flex-start w-100">
       <img class="rounded-circle shadow-1-strong me-3"
         src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(19).webp" alt="avatar" width="40"
         height="40" />
+
       <div class="form-outline w-100 my-2">
-        <%= form.fields_for :comments do |comment_f| %>
+        <%# Builds an empty comment object and passes it to a nested form %>
+        <% post.comments.build %>
+
+        <%= form.fields_for :comments, post.comments.last do |comment_f| %>
           <%= comment_f.text_field :body, placeholder: 'Write a comment...', class: "form-control", style: "background: #fff;" %>
           <%= comment_f.hidden_field :commenter_id, value: current_user.id %>
         <% end %>
       </div>
+
     </div>
     <div class="float-end mt-2 py-2">
       <%= form.submit "Post comment", class: "btn btn-primary btn-sm my-2" %>
