@@ -11,6 +11,11 @@
           <p class="mb-1">
             <%= comment.commenter.full_name %> <span class="small"><%= time_ago_in_words(post.created_at) %> ago</span>
           </p>
+          <span class="small">
+            <% if comment.commenter == current_user %>
+              <%= link_to "Delete", post_comment_path(post, comment), data: { "turbo-method": :delete }, class: "mb-0" %>
+            <% end %>
+          </span>
         </div>
         <p class="small mb-0">
           <%= comment.body %>
