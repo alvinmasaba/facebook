@@ -1,0 +1,13 @@
+<%# Display the like *form if like is nil, else display the unlike link %>
+<% if !like %>
+  <% comment.likes.build %>
+  <%= form_with(model: [post, comment], class: "d-flex align-items-center me-3") do |form| %>
+    <%= form.fields_for :likes, comment.likes.last do |like_form| %>
+      <%= like_form.hidden_field :user_id, value: current_user.id %>
+    <% end %>
+    
+    <%= form.submit "Like", class: "btn btn-link p-0 m-0 d-inline align-baseline d-inline-block" %>
+  <% end %>
+<% else %>
+  <%= link_to "Unlike", post_comment_like_path(post, comment, like), data: { "turbo-method": :delete }, class: "mb-0" %>
+<% end %>
