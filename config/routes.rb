@@ -7,8 +7,12 @@ Rails.application.routes.draw do
 
   root 'posts#index'
 
-  resources :posts do
-    resources :comments
+  concern :likeable do
+    resources :likes, only: [:new, :create, :destroy]
+  end
+
+  resources :posts, concerns: :likeable do
+    resources :comments, concerns: :likeable
   end
 
   resources :friendships, only: [:new, :create, :destroy]
