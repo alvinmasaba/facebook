@@ -1,0 +1,9 @@
+<%= form_with(model: post, class: "d-flex align-items-center me-3") do |form| %>
+  <% post.likes.build %>
+
+  <%= form.fields_for :likes, post.likes.last do |like_form| %>
+    <%= like_form.hidden_field :user_id, value: current_user.id %>
+  <% end %>
+
+  <%= form.submit "Like", class: "btn btn-link p-0 m-0 d-inline align-baseline d-inline-block" %>
+<% end %>
