@@ -18,7 +18,10 @@
 
   <p class="mt-3 mb-3 pb-1">
     <%= post.body %>
-    <%= render "likes", num_of_likes: post.likes_count %>
+    <div class="small d-flex justify-content-start">
+      <%= render "likes", num_of_likes: post.likes_count %>
+      <%= render "likes/list_of_friends_likes", post: post %>
+    </div>
   </p>
 
   <div class="small d-flex justify-content-start">
