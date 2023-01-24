@@ -1,0 +1,15 @@
+User: <%= @user.full_name %>
+
+<%= render 'posts/status_update', post: Post.new %>
+
+<section>
+  <div class="container my-2 py-5">
+    <div class="row d-flex justify-content-center gap-5">
+      <% @posts.each do |post| %>
+        <div class="col-md-12 col-lg-10 col-xl-8" id="post-display">
+          <%= render "posts/container", post: post %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>

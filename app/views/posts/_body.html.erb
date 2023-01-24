@@ -19,8 +19,12 @@
   <p class="mt-3 mb-3 pb-1">
     <%= post.body %>
     <div class="small d-flex justify-content-start">
-      <%= render "likes", { num_of_likes: post.likes_count, post: post } %>
-      <%= render "likes/list_of_friends_likes", post: post %>
+      <%= render "posts/likes", { num_of_likes: post.likes_count, post: post } %>
+
+      <% if post.likes_count > 0 %>
+        <%= render "likes/list_of_friends_likes", post: post %>
+      <% end %>
+      
     </div>
   </p>
 
