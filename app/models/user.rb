@@ -26,7 +26,7 @@ class User < ApplicationRecord
 
   def friends
     self.outgoing_friendships.map { |f| User.find(f[:friend_id]) }
-                        .concat( self.incoming_friendships.map { |f| User.find(f[:user_id]) })
+                             .concat( self.incoming_friendships.map { |f| User.find(f[:user_id]) })
   end
 
   def friendships

@@ -3,8 +3,10 @@ Rails.application.routes.draw do
     sessions: 'users/sessions'
   }
 
-  resources :users, only: [:index, :show]
-  
+  resources :users, only: [:index, :show] do
+    get '/friends', to: 'users#friends', as: :friends
+  end
+
   resource :dashboard, only: [:index, :show]
 
   root 'posts#index'

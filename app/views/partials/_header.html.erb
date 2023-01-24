@@ -37,7 +37,7 @@
           <% end %>
 
           <li class="nav-item p-2">
-            <%= link_to "Friends", dashboard_path(:id =>"friends"), data: {"turbo-frame": :"friends"} %>
+            <%= link_to "Friends", user_friends_path(current_user) %>
           </li>
 
         <% else %>
