@@ -9,6 +9,7 @@ class User < ApplicationRecord
   has_many :posts, foreign_key: 'author_id', dependent: :destroy
   has_many :comments, through: :posts, foreign_key: 'commenter_id', dependent: :destroy
   has_many :likes, dependent: :destroy
+  has_many :wall_posts, class_name: 'Post', foreign_key: 'user_id', dependent: :destroy
   
   # Incoming friends are users who have sent the user a request
   has_many :incoming_friends, through: :received_requests, source: 'sender'

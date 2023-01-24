@@ -7,7 +7,12 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = current_user.posts.build(post_params)
+    if params[:user_id]
+      @post = User.find(params[:user_id]).posts.build(post_params)
+    else
+      @post = current_user.posts.build(post_params)
+    end
+
     @post.save
     ActionCable.server.broadcast('post', @post.as_json(include: :author))
   end
@@ -41,7 +46,7 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:body, 
+    params.require(:post).permit(:body, :user_id, :author_id,
                                   comments_attributes: [:id, :commenter_id, :body, :_destroy, 
                                   likes_attributes: [:id, :user_id, :_destroy]], 
                                   likes_attributes: [:id, :user_id, :_destroy])

@@ -17,7 +17,9 @@ User: <%= @user.full_name %>
 <h4 class="text-center mt-4 mb-2 pt-2 pb-2">Recent Activity</h4>
 
 <% if current_user == @user %>
-  <%= render 'posts/status_update', post: Post.new %>
+  <%= render "posts/status_update", post: @post %>
+<% elsif @user.friends.include?(current_user) %>
+  <%= render "profile_post", user: @user %>
 <% end %>
 
 <section>
