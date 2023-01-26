@@ -2,7 +2,8 @@
 
 <ol>
   <% @sent_requests.each do |request| %>
-    <li><%= request.recipient.full_name %>, <p>Request Pending...</p> <%= button_to "Remove Friend Request", friend_request_path(request), method: :delete %></li>
+    <li><%= link_to "#{request.recipient.full_name}", request.recipient %>, <p>Request Pending...</p> 
+    <%= button_to "Remove Friend Request", friend_request_path(request), method: :delete %></li>
   <% end %>
 </ol>
 
@@ -10,6 +11,7 @@
 
 <ol>
   <% @received_requests.each do |request| %>
-    <%= request.sender.full_name %> <%= render "friendships/form", friendship: Friendship.new, friend_id: request.sender.id %>
+    <%= link_to "#{request.sender.full_name}", request.sender %> 
+    <%= render "friendships/form", friendship: Friendship.new, friend_id: request.sender.id %>
   <% end %>
 </ol>

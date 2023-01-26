@@ -4,8 +4,10 @@ class User < ApplicationRecord
 
   has_many :outgoing_friendships, class_name: 'Friendship', foreign_key: 'user_id', dependent: :destroy
   has_many :incoming_friendships, class_name: 'Friendship', foreign_key: 'friend_id', dependent: :destroy
+
   has_many :sent_requests, class_name: 'FriendRequest', foreign_key: 'sender_id'
   has_many :received_requests, class_name: 'FriendRequest', foreign_key: 'recipient_id'
+  
   has_many :posts, foreign_key: 'author_id', dependent: :destroy
   has_many :comments, through: :posts, foreign_key: 'commenter_id', dependent: :destroy
   has_many :likes, dependent: :destroy
@@ -16,6 +18,13 @@ class User < ApplicationRecord
 
   # Potential friends are users to whom the user has sent a friend request
   has_many :potential_friends, through: :sent_requests, source: 'recipient'
+
+  def wall_posts_and_statuses
+    self.wall_posts
+        .concat(self.posts.where(user_id: nil))
+        .order('created_at desc')
+        .limit(10)
+  end
 
   def recent_friends_posts
     Post.all
