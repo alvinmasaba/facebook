@@ -8,7 +8,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @post = Post.new
-    @posts = @user.wall_posts.concat(@user.posts).order('created_at desc').limit(10)
+    @posts = @user.wall_posts_and_statuses
   end
 
   def friends

@@ -9,7 +9,8 @@
       <div>
         <div class="d-flex justify-content-between align-items-center">
           <p class="mb-1">
-            <%= comment.commenter.full_name %> <span class="small"><%= time_ago_in_words(post.created_at) %> ago</span>
+            <%= link_to "#{comment.commenter.full_name}", comment.commenter, class: "text-decoration-none" %> <span class="small">
+            <%= time_ago_in_words(post.created_at) %> ago</span>
           </p>
           <span class="small">
             <% if comment.commenter == current_user %>

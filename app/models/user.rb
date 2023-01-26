@@ -17,6 +17,13 @@ class User < ApplicationRecord
   # Potential friends are users to whom the user has sent a friend request
   has_many :potential_friends, through: :sent_requests, source: 'recipient'
 
+  def wall_posts_and_statuses
+    self.wall_posts
+        .concat(self.posts.where(user_id: nil))
+        .order('created_at desc')
+        .limit(10)
+  end
+
   def recent_friends_posts
     Post.all
         .order('created_at desc')
