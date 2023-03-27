@@ -1,7 +1,6 @@
-User: <%= @user.full_name %>
-
+<h4 class="text-center mt-4 mb-2 pt-2 pb-2"><%= @user.full_name %>'s Profile</h4>
 <section>
-  <h3>Friends</h2>
+  <h3><%= @user.first_name %>'s Friends</h2>
 
   <div>
     <ul>
@@ -13,8 +12,6 @@ User: <%= @user.full_name %>
     <%= link_to "All Friends", user_friends_path(@user) %>
   </div>
 </section>
-
-<h4 class="text-center mt-4 mb-2 pt-2 pb-2">Recent Activity</h4>
 
 <% if current_user == @user %>
   <%= render "posts/status_update", post: @post %>
