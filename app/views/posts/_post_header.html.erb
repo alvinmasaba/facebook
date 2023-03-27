@@ -1,0 +1,23 @@
+<div>
+  <h6 class="fw-bold text-primary mb-1"><%= link_to "#{post.author.full_name}", post.author, class: "text-decoration-none" %></h6>
+  <% if !post.user_id || (post.user_id == post.author_id) %>
+    <p class="text-muted small mb-0">
+      Shared publicly - <%= time_ago_in_words(post.created_at) %> ago
+    </p>
+  
+  <% elsif post.user_id == current_user.id %>
+    <p class="text-muted small mb-0">
+      Shared with you - <%= time_ago_in_words(post.created_at) %> ago
+    </p>
+
+  <% else %>
+    <p class="text-muted small mb-0">
+      Shared with <%= link_to post.user.full_name, user_path(post.user) %> - <%= time_ago_in_words(post.created_at) %> ago
+    </p>
+  <% end %>
+  <span class="small">
+    <% if post.author == current_user %>
+      <%= link_to "Delete", post_path(post), data: { "turbo-method": :delete }, class: "mb-0" %>
+    <% end %>
+  </span>
+</div>
