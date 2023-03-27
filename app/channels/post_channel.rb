@@ -8,7 +8,7 @@ class PostChannel < ApplicationCable::Channel
     def receive(data)
       data['user'] = current_user
       
-      ActionCable.server.broadcast('post', data)
+      ActionCable.server.broadcast('post')
     end
   end
 end

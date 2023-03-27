@@ -14,7 +14,7 @@ class PostsController < ApplicationController
     end
 
     @post.save
-    ActionCable.server.broadcast('post', @post.as_json(include: :author))
+    ActionCable.server.broadcast('post')
   end
 
   def update
@@ -26,6 +26,8 @@ class PostsController < ApplicationController
         format.html { render :index, status: :unprocessable_entity }
         format.json { render json: @post.errors, status: :unprocessable_entity }
       end
+      
+      ActionCable.server.broadcast('post', nil)
     end
   end
 
@@ -33,7 +35,7 @@ class PostsController < ApplicationController
     @post.destroy
 
     respond_to do |format|
-      format.html { redirect_to root_path, notice: "Post was successfully destroyed." }
+      format.html { ActionCable.server.broadcast('post', nil) }
       format.json { head :no_content }
     end
   end

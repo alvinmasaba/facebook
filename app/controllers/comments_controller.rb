@@ -14,16 +14,17 @@ class CommentsController < ActionController::Base
         format.html { render :index, status: :unprocessable_entity }
         format.json { render json: @comment.errors, status: :unprocessable_entity }
       end
+
+      ActionCable.server.broadcast('post', nil)
     end
   end
 
   def destroy
     @comment.destroy
 
-    respond_to do |format|
-      format.html { redirect_to root_path, notice: "Comment was successfully destroyed." }
-      format.json { head :no_content }
-    end
+    ActionCable.server.broadcast('post', nil)
+    
+    flash[:notice] = "Comment was successfully destroyed."
   end
 
   private

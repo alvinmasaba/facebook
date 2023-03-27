@@ -8,10 +8,7 @@ class LikesController < ApplicationController
   def destroy
     @like.destroy
 
-    respond_to do |format|
-      format.html { redirect_to root_path, notice: "Like removed." }
-      format.json { head :no_content }
-    end
+    ActionCable.server.broadcast('post', nil)
   end
 
   private
