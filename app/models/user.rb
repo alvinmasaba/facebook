@@ -22,13 +22,11 @@ class User < ApplicationRecord
   def wall_posts_and_statuses
     self.wall_posts
         .concat(self.posts.where(user_id: nil))
-        .order('created_at desc')
         .limit(10)
   end
 
   def recent_friends_posts
     Post.all
-        .order('created_at desc')
         .includes(:author, :comments)
         .select { |post| self.friends.include?(post.author) || post.author == self }
         .take(10)
