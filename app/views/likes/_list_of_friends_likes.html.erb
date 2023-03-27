@@ -1,3 +1,5 @@
-<p class="small mb-0 d-flex align-items-end">Liked by 
-  <%= post.likers %>
+<p class="small mb-0 d-flex align-items-end gap-1">Liked by 
+  <% post.user_likers.limit(4).each do |liker| %>
+    <%= link_to liker.full_name, liker, style: "text-decoration: none" %>
+  <% end %>
 </p>

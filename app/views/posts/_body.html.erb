@@ -11,7 +11,7 @@
         </p>
       <% else %>
         <p class="text-muted small mb-0">
-          Shared with <%= post.user.first_name %> - <%= time_ago_in_words(post.created_at) %> ago
+          Shared with <%= link_to post.user.full_name, user_path(post.user) %> - <%= time_ago_in_words(post.created_at) %> ago
         </p>
       <% end %>
       <span class="small">
