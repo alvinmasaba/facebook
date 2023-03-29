@@ -7,35 +7,11 @@
     </a>
     <div class="flex-grow-1 flex-shrink-1">
       <div>
-        <div class="d-flex justify-content-between align-items-center">
-          <p class="mb-1">
-            <%= link_to "#{comment.commenter.full_name}", comment.commenter, class: "text-decoration-none" %> <span class="small">
-            <%= time_ago_in_words(comment.created_at) %> ago</span>
-          </p>
-          <span class="small">
-            <% if comment.commenter == current_user %>
-              <%= link_to "Delete", post_comment_path(post, comment), data: { "turbo-method": :delete }, class: "mb-0" %>
-            <% end %>
-          </span>
-        </div>
+        <%= render "comments/heading", comment: comment, post: post %>
 
-        <p class="mt-3 mb-3 pb-1">
-          <%= comment.body %>
-          <div class="small d-flex justify-content-start">
-            <%= render "posts/likes", num_of_likes: comment.likes_count %>
-            <% if comment.likes_count > 0 %>
-              <%= render "likes/list_of_friends_likes", post: comment %>
-            <% end %>
-          </div>
-        </p>
+        <%= render "comments/body", comment: comment, post: post %>
 
-        <div class="small d-flex justify-content-start">
-          <%= render "likes/comment_like_form", post: post, comment: comment, like: comment.likes.find_by(user_id: current_user.id) %>
-          <a href="#!" class="d-flex align-items-center me-3">
-            <i class="far fa-comment-dots me-2"></i>
-            <%= %>
-          </a>
-        </div>
+        <%= render "comments/footer", comment: comment, post: post %>
       </div>
     </div>
   </div>

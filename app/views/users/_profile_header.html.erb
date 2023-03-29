@@ -1,0 +1,34 @@
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<!-- begin profile -->
+<div class="profile navbar-expand-lg">
+    <div class="profile-header">
+      <!-- BEGIN profile-header-cover -->
+      <div class="profile-header-cover"></div>
+      <!-- END profile-header-cover -->
+      <!-- BEGIN profile-header-content -->
+      <div class="profile-header-content">
+          <!-- BEGIN profile-header-img -->
+          <div class="profile-header-img">
+            <img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="">
+          </div>
+          <!-- END profile-header-img -->
+          <!-- BEGIN profile-header-info -->
+          <div class="profile-header-info">
+            <h4 class="m-t-10 m-b-5"><%= @user.full_name %></h4>
+            <p class="m-b-10">UXUI + Frontend Developer</p>
+            <%= link_to "Edit Profile", edit_user_registration_path, class: "btn btn-sm btn-info mb-2" %>
+          </div>
+          <!-- END profile-header-info -->
+      </div>
+      <!-- END profile-header-content -->
+      <!-- BEGIN profile-header-tab -->
+      <ul class="profile-header-tab nav nav-tabs">
+          <li class="nav-item"><a href="https://www.bootdey.com/snippets/view/bs4-profile-with-timeline-posts" target="__blank" class="nav-link_">POSTS</a></li>
+          <li class="nav-item"><a href="https://www.bootdey.com/snippets/view/bs4-profile-about" target="__blank" class="nav-link_">ABOUT</a></li>
+          <li class="nav-item"><a href="https://www.bootdey.com/snippets/view/profile-photos" target="__blank" class="nav-link_">PHOTOS</a></li>
+          <li class="nav-item"><%= link_to "FRIENDS", user_friends_path(current_user), class: "nav-link_" %></li>
+      </ul>
+      <!-- END profile-header-tab -->
+    </div>
+</div>
+<!-- end profile -->

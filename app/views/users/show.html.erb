@@ -1,17 +1,4 @@
-<h4 class="text-center mt-4 mb-2 pt-2 pb-2"><%= @user.full_name %>'s Profile</h4>
-<section>
-  <h3><%= @user.first_name %>'s Friends</h2>
-
-  <div>
-    <ul>
-      <% @user.friends.take(5).each do |friend| %>
-        <li><%= link_to "#{friend.full_name}", friend %></li>
-      <% end %>
-    </ul>
-
-    <%= link_to "All Friends", user_friends_path(@user) %>
-  </div>
-</section>
+<%= render "profile_header", user: @user %>
 
 <% if current_user == @user %>
   <%= render "posts/status_update", post: @post %>

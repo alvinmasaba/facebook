@@ -6,3 +6,21 @@
     </a>
   </div>
 <% end %>
+
+<div class="timeline-likes  d-flex justify-content-space-between">
+  <div class="stats-right">
+    <span class="stats-text">259 Shares</span>
+    <span class="stats-text">21 Comments</span>
+  </div>
+  <div class="stats">
+    <span class="fa-stack fa-fw stats-icon">
+    <i class="fa fa-circle fa-stack-2x text-danger"></i>
+    <i class="fa fa-heart fa-stack-1x fa-inverse t-plus-1"></i>
+    </span>
+    <span class="fa-stack fa-fw stats-icon">
+    <i class="fa fa-circle fa-stack-2x text-primary"></i>
+    <i class="fa fa-thumbs-up fa-stack-1x fa-inverse"></i>
+    </span>
+    <span class="stats-total"><%= num_of_likes %></span>
+  </div>
+</div>
