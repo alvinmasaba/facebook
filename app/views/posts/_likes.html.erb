@@ -1,3 +1,6 @@
+<% post = local_assigns[:post] %>
+<%= "DEBUG: post object in _likes is #{post.inspect}" %>
+
 <% if num_of_likes > 0 %>
   <div class="small d-flex justify-content-start">
     <a href="#!" class="d-flex align-items-start me-3">
@@ -9,7 +12,6 @@
 
 <div class="timeline-likes  d-flex justify-content-space-between">
   <div class="stats-right">
-    <span class="stats-text">259 Shares</span>
     <span class="stats-text">21 Comments</span>
   </div>
   <div class="stats">
