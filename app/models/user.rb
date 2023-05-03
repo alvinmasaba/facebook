@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   include Gravtastic
-  gravtastic
+  gravtastic :secure => true, :filetype => :gif, :size => 120, :default => "https://bootdey.com/img/Content/avatar/avatar3.png"
   
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable

@@ -1,9 +1,7 @@
 <%= form_with(model: post) do |form| %>
   <div class="card-footer my-2 py-3 border-0" style="background-color: #f8f9fa;">
     <div class="d-flex flex-start w-100">
-      <img class="rounded-circle shadow-1-strong me-3"
-        src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(19).webp" alt="avatar" width="40"
-        height="40" />
+      <%= image_tag current_user.gravatar_url, :alt => "avatar", :class => "rounded-circle shadow-1-strong me-3", :style => "width: 40px; height: 40px" %>
 
       <div class="form-outline w-100 my-2">
         <%# Builds an empty comment object and passes it to a nested form %>
