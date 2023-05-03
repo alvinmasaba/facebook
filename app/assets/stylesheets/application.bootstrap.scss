@@ -8,6 +8,8 @@ body{
 
 .profile-header {
   position: relative;
+  display: flex;
+  flex-direction: column;
   overflow: hidden
 }
 
@@ -154,7 +156,7 @@ body{
 .profile-header .profile-header-tab {
   background: #fff;
   list-style-type: none;
-  margin: -10px 0 0;
+  margin: 0;
   padding: 0 0 0 140px;
   white-space: nowrap;
   border-radius: 0
