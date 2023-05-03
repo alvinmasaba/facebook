@@ -108,6 +108,7 @@ GEM
     formatador (1.1.0)
     globalid (1.0.0)
       activesupport (>= 5.0)
+    gravtastic (3.2.6)
     guard (2.18.0)
       formatador (>= 0.2.4)
       listen (>= 2.7, < 4.0)
@@ -266,6 +267,7 @@ DEPENDENCIES
   cssbundling-rails
   debug
   devise (~> 4.8)
+  gravtastic
   guard
   guard-minitest
   jbuilder
