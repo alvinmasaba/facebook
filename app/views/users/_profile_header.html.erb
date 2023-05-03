@@ -16,7 +16,10 @@
           <div class="profile-header-info">
             <h4 class="m-t-10 m-b-5"><%= @user.full_name %></h4>
             <p class="m-b-10">UXUI + Frontend Developer</p>
-            <%= link_to "Edit Profile", edit_user_registration_path, class: "btn btn-sm btn-info mb-2" %>
+            
+            <% if @user == current_user %>
+              <%= link_to "Edit Profile", edit_user_registration_path, class: "btn btn-sm btn-info mb-2" %>
+            <% end %>  
           </div>
           <!-- END profile-header-info -->
       </div>
