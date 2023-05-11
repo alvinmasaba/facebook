@@ -6,7 +6,10 @@
       <%= like_form.hidden_field :user_id, value: current_user.id %>
     <% end %>
     
-    <%= form.submit "Like", class: "btn btn-link p-0 m-0 d-inline align-baseline d-inline-block" %>
+    <div class="m-r-15 text-inverse-lighter">
+      <i class="fa fa-thumbs-up fa-fw fa-lg m-r-3"></i>
+      <%= form.submit "Like", class: "btn btn-link p-0 m-0 d-inline align-baseline d-inline-block" %>
+    </div>
   <% end %>
 
 <% else %>

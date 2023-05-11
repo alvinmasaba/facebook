@@ -6,7 +6,7 @@ class Post < ApplicationRecord
   belongs_to :author, class_name: 'User'
   belongs_to :user, optional: true
   
-  has_many :comments, dependent: :destroy
+  has_many :comments, dependent: :destroy, counter_cache: true
   has_many :likes, dependent: :destroy
   has_many :user_likers, through: :likes, source: :user
   

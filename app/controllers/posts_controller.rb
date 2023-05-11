@@ -14,7 +14,7 @@ class PostsController < ApplicationController
     end
 
     @post.save
-    ActionCable.server.broadcast('post')
+    ActionCable.server.broadcast('post', @post)
   end
 
   def update

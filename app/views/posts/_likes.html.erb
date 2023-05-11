@@ -1,3 +1,6 @@
+<% post = local_assigns[:post] %>
+<%= "DEBUG: post object in _likes is #{post.inspect}" %>
+
 <% if num_of_likes > 0 %>
   <div class="small d-flex justify-content-start">
     <a href="#!" class="d-flex align-items-start me-3">
@@ -6,3 +9,20 @@
     </a>
   </div>
 <% end %>
+
+<div class="timeline-likes  d-flex justify-content-space-between">
+  <div class="stats-right">
+    <span class="stats-text">21 Comments</span>
+  </div>
+  <div class="stats">
+    <span class="fa-stack fa-fw stats-icon">
+    <i class="fa fa-circle fa-stack-2x text-danger"></i>
+    <i class="fa fa-heart fa-stack-1x fa-inverse t-plus-1"></i>
+    </span>
+    <span class="fa-stack fa-fw stats-icon">
+    <i class="fa fa-circle fa-stack-2x text-primary"></i>
+    <i class="fa fa-thumbs-up fa-stack-1x fa-inverse"></i>
+    </span>
+    <span class="stats-total"><%= num_of_likes %></span>
+  </div>
+</div>

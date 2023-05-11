@@ -3,7 +3,7 @@ class Comment < ApplicationRecord
 
   default_scope { order(created_at: :asc) }
   
-  belongs_to :post
+  belongs_to :post, counter_cache: true
   belongs_to :parent_comment, class_name: 'Comment'
   belongs_to :commenter, class_name: 'User'
   has_many :likes
