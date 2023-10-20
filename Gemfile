@@ -78,5 +78,7 @@ group :test do
   gem 'ruby-prof'
 end
 
-gem "devise", "~> 4.8"
 gem 'gravtastic'
+gem 'psych', '~>3.0'
+gem 'devise', github: 'heartcombo/devise', branch: 'main'
+gem 'responders', '~> 3.1.0'
