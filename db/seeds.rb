@@ -1,8 +1,8 @@
 puts "Seeding database with users..."
 
-USERS = ["Alvin Masaba", "Francis Masaba", "Stephanie Masaba",
-         "Trevor Masaba", "Cassandra Marambio", "Nick Kerr", "Steve Nash",
-         "LeBron James", "Pascal Siakam", "Chat GPT3"]
+USERS = ["Alvin Masaba", "Kobe Bufkin", "Jaime Jacquez",
+         "Jett Howard", "Marcus Sasser", "Brice Sensabough",
+         "Colby Jones", "Jalen Pickett", "Julian Strawther"]
 
 USERS.each do |u|
   name = u.split
